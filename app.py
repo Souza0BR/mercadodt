@@ -11,7 +11,7 @@ import logging
 import sqlite3
 
 import requests
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 
 app = Flask(__name__)
 
@@ -256,3 +256,10 @@ def geocodificar_cep():
 if __name__ == "__main__":
 
     app.run(debug=True, port=5000)
+
+
+# Servir frontend integrado em /ui
+@app.route("/ui/")
+@app.route("/ui/<path:path>")
+def serve_ui(path="index.html"):
+    return send_from_directory("frontend", path)

@@ -48,6 +48,14 @@ Ou com `docker-compose`:
 docker-compose up --build
 ```
 
+## Frontend integrado
+
+O frontend está disponível quando a API está rodando em `http://localhost:5000` na rota:
+
+- `http://localhost:5000/ui/` — interface web estática (consome os endpoints da mesma origem).
+
+Se preferir servir os arquivos estáticos separadamente, veja a pasta `frontend/`.
+
 
 ## Testes simples
 
