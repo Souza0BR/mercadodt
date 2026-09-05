@@ -1,4 +1,10 @@
-let API_BASE = typeof window !== 'undefined' && window.API_BASE ? window.API_BASE : '' // mesmo host
+let API_BASE = ''
+// inicializa API_BASE a partir do config.js (window.API_BASE) ou do override em localStorage
+if (typeof window !== 'undefined') {
+  API_BASE = window.API_BASE || ''
+  const override = localStorage.getItem('api_base_override')
+  if (override) API_BASE = override
+}
 
 function q(sel){return document.querySelector(sel)}
 
@@ -46,3 +52,30 @@ q('#form-cep').addEventListener('submit', async (ev)=>{
 show('promocoes')
 fetchPromocoes()
 fetchEncartes()
+
+// Settings UI
+function toggleSettings(){
+  const p = q('#settings-panel')
+  p.classList.toggle('hidden')
+  if(!p.classList.contains('hidden')){
+    const current = localStorage.getItem('api_base_override') || (window.API_BASE || '')
+    q('#api-base-input').value = current
+  }
+}
+
+q('#btn-settings').addEventListener('click', ()=>toggleSettings())
+q('#api-base-save').addEventListener('click', ()=>{
+  const v = q('#api-base-input').value.trim()
+  if(v){
+    localStorage.setItem('api_base_override', v)
+    API_BASE = v
+  }
+  toggleSettings()
+  fetchPromocoes(); fetchEncartes()
+})
+q('#api-base-clear').addEventListener('click', ()=>{
+  localStorage.removeItem('api_base_override')
+  API_BASE = window.API_BASE || ''
+  toggleSettings()
+  fetchPromocoes(); fetchEncartes()
+})

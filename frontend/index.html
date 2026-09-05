@@ -13,6 +13,7 @@
       <button id="nav-promocoes">Promoções</button>
       <button id="nav-encartes">Encartes</button>
       <button id="nav-geocode">Geocodificar CEP</button>
+      <button id="btn-settings" title="Configurações">⚙️</button>
     </nav>
   </header>
 
@@ -36,6 +37,17 @@
       <pre id="resultado-cep"></pre>
     </section>
   </main>
+
+  <div id="settings-panel" class="settings hidden">
+    <h3>Configurações</h3>
+    <label for="api-base-input">API Base URL</label>
+    <input id="api-base-input" placeholder="ex: http://localhost:5000" />
+    <div style="margin-top:8px">
+      <button id="api-base-save">Salvar</button>
+      <button id="api-base-clear">Limpar</button>
+    </div>
+    <small class="muted">Valor salvo em localStorage para este navegador.</small>
+  </div>
 
   <footer>
     <small>MercadoDT — interface demo</small>

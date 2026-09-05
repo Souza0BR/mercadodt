@@ -16,3 +16,10 @@ form input{flex:1;padding:8px;border-radius:6px;border:1px solid #ccc}
 form button{padding:8px 12px;border-radius:6px;border:0;background:var(--accent);color:#fff}
 pre{background:#fff;padding:12px;border-radius:6px;overflow:auto}
 footer{padding:12px;text-align:center;color:var(--muted)}
+
+/* settings panel */
+.settings{position:fixed;right:18px;top:72px;width:300px;background:var(--card);padding:12px;border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,0.12)}
+.settings h3{margin:0 0 8px 0}
+.settings input{width:100%;padding:8px;border-radius:6px;border:1px solid #ccc}
+.settings button{padding:6px 10px;margin-right:8px;border-radius:6px;border:0;background:var(--accent);color:#fff}
+.settings .muted{display:block;margin-top:8px}
