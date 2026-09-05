@@ -21,6 +21,17 @@ DATABASE = "promocoes.db"
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 logger = logging.getLogger(__name__)
 
+# Rotating file handler
+from logging.handlers import RotatingFileHandler
+import os
+
+log_dir = os.path.join(os.path.dirname(__file__), "logs")
+os.makedirs(log_dir, exist_ok=True)
+file_handler = RotatingFileHandler(os.path.join(log_dir, "app.log"), maxBytes=5 * 1024 * 1024, backupCount=3)
+file_handler.setFormatter(logging.Formatter("%(asctime)s %(levelname)s %(name)s: %(message)s"))
+file_handler.setLevel(logging.INFO)
+logger.addHandler(file_handler)
+
 
 def get_db_connection():
     conn = sqlite3.connect(DATABASE)

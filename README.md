@@ -33,6 +33,22 @@ python seed_db.py
 python app.py
 ```
 
+## Docker
+
+Executar via Docker:
+
+```bash
+docker build -t mercadodt:latest .
+docker run -p 5000:5000 -v $(pwd)/logs:/app/logs mercadodt:latest
+```
+
+Ou com `docker-compose`:
+
+```bash
+docker-compose up --build
+```
+
+
 ## Testes simples
 
 ```bash
