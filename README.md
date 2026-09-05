@@ -1,5 +1,7 @@
 # MercadoDT
 
+![CI](https://github.com/Souza0BR/mercadodt/actions/workflows/ci.yml/badge.svg)
+
 Pequena API Flask para gerenciar promoções e encartes.
 
 ## Pré-requisitos
