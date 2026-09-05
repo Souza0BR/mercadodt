@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>MercadoDT — Painel</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>MercadoDT</h1>
+    <nav>
+      <button id="nav-promocoes">Promoções</button>
+      <button id="nav-encartes">Encartes</button>
+      <button id="nav-geocode">Geocodificar CEP</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="promocoes" class="view">
+      <h2>Promoções</h2>
+      <div id="lista-promocoes" class="grid"></div>
+    </section>
+
+    <section id="encartes" class="view hidden">
+      <h2>Encartes</h2>
+      <div id="lista-encartes" class="grid"></div>
+    </section>
+
+    <section id="geocode" class="view hidden">
+      <h2>Geocodificar CEP</h2>
+      <form id="form-cep">
+        <input type="text" id="cep" placeholder="Digite o CEP (ex: 01001000)" />
+        <button type="submit">Pesquisar</button>
+      </form>
+      <pre id="resultado-cep"></pre>
+    </section>
+  </main>
+
+  <footer>
+    <small>MercadoDT — interface demo</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
