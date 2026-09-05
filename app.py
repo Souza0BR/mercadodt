@@ -28,6 +28,13 @@ def get_db_connection():
     return conn
 
 
+# Erro global: garante resposta JSON em exceções não tratadas
+@app.errorhandler(Exception)
+def handle_exception(e):
+    logger.exception("Unhandled exception: %s", e)
+    return jsonify({"erro": "Erro interno no servidor"}), 500
+
+
 def calcular_distancia_km(lat1, lng1, lat2, lng2):
 
     raio_terra_km = 6371
