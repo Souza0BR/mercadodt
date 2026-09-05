@@ -1,4 +1,4 @@
-const API_BASE = '' // mesmo host
+let API_BASE = typeof window !== 'undefined' && window.API_BASE ? window.API_BASE : '' // mesmo host
 
 function q(sel){return document.querySelector(sel)}
 

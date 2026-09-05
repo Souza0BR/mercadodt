@@ -262,4 +262,25 @@ if __name__ == "__main__":
 @app.route("/ui/")
 @app.route("/ui/<path:path>")
 def serve_ui(path="index.html"):
-    return send_from_directory("frontend", path)
+    # cache static frontend files for 1 hour
+    resp = send_from_directory("frontend", path, cache_timeout=3600)
+    # security headers
+    resp.headers.setdefault('X-Content-Type-Options', 'nosniff')
+    resp.headers.setdefault('X-Frame-Options', 'DENY')
+    resp.headers.setdefault('Referrer-Policy', 'no-referrer-when-downgrade')
+    return resp
+
+
+@app.route('/ui/config.js')
+def ui_config():
+    # expose API base URL for frontend; prefer explicit env var if present
+    from os import environ
+    api_base = environ.get('API_BASE')
+    if not api_base:
+        # build from request host
+        api_base = request.host_url.rstrip('/')
+    js = f"window.API_BASE = '{api_base}';"
+    resp = app.response_class(js, mimetype='application/javascript')
+    # don't cache config for long
+    resp.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    return resp
